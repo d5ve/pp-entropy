@@ -28,17 +28,17 @@ func main() {
 	flag.Parse()
 
 	if *alphabet > 0 && *length > 0 && *entropy == 0.0 {
-		fmt.Printf("An alphabet of %d and a length of %d gives entropy of %0.1f bits\n",
+		fmt.Printf("An alphabet size of %d and a passphrase length of %d gives entropy of %0.1f bits\n",
 			*alphabet,
 			*length,
 			math.Log2(float64(*alphabet))*float64(*length))
 	} else if *alphabet > 0 && *entropy > 0.0 && *length == 0 {
-		fmt.Printf("An alphabet of %d and an entropy of %0.1f bits requires a length of %d\n",
+		fmt.Printf("An alphabet size of %d and an entropy of %0.1f bits requires a passphrase length of %d\n",
 			*alphabet,
 			*entropy,
 			int(math.Ceil(*entropy/math.Log2(float64(*alphabet)))))
 	} else if *length > 0 && *entropy > 0.0 && *alphabet == 0.0 {
-		fmt.Printf("An entropy of %0.1f bits and a length = %d requires an alphabet size of %d\n",
+		fmt.Printf("An entropy of %0.1f bits and a passphrase length of %d requires an alphabet size of %d\n",
 			*entropy,
 			*length,
 			int(math.Ceil(math.Pow(2, *entropy/float64(*length)))))
