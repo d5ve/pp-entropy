@@ -5,10 +5,8 @@ package main
 // calculate the third.
 // - entropy       = log2 ( alphabet size ) * length
 // - length        = entropy / log2( alphabet size )
-// - alphabet size = 2 ** entropy *
-//                  x        = log2 ( a ** b )
-//		    2 ** x   = a ** b
-//                  (2 ** x) / log(b) = a ???
+// - alphabet size = 2 ** ( entropy / length )
+
 import (
 	"flag"
 	"fmt"
@@ -43,6 +41,6 @@ func main() {
 		fmt.Printf("An entropy of %0.1f bits and a length = %d requires an alphabet size of %d\n",
 			*entropy,
 			*length,
-			int(math.Ceil(math.Log(math.Pow(2, *entropy))/math.Log(float64(*length)))))
+			int(math.Ceil(math.Pow(2, *entropy/float64(*length)))))
 	}
 }
