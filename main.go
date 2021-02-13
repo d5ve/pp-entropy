@@ -42,5 +42,7 @@ func main() {
 			*entropy,
 			*length,
 			int(math.Ceil(math.Pow(2, *entropy/float64(*length)))))
+	} else {
+		flag.Usage()
 	}
 }
