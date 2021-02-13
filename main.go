@@ -1,5 +1,9 @@
 package main
 
+// pp-entropy
+// Given two of alphabet size, passphrase lenght, and bits of entropy,
+// calculate the third.
+
 import "flag"
 
 var alphabet = flag.Int("alpha", 0, "Size of alphabet (words or chars)")
