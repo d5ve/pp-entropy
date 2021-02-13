@@ -3,8 +3,8 @@ package main
 // pp-entropy
 // Given two of alphabet size, passphrase length, and bits of entropy,
 // calculate the third.
-// - entropy       = log2 ( alphabet size ** length )
-// - length        = 2 ** entropy / log( alphabet size )
+// - entropy       = log2 ( alphabet size ) * length
+// - length        = entropy / log2( alphabet size )
 // - alphabet size = 2 ** entropy *
 //                  x        = log2 ( a ** b )
 //		    2 ** x   = a ** b
@@ -33,14 +33,14 @@ func main() {
 		fmt.Printf("An alphabet of %d and a length of %d gives entropy of %0.1f bits\n",
 			*alphabet,
 			*length,
-			math.Log2(math.Pow(float64(*alphabet), float64(*length))))
+			math.Log2(float64(*alphabet))*float64(*length))
 	} else if *alphabet > 0 && *entropy > 0.0 && *length == 0 {
 		fmt.Printf("An alphabet of %d and an entropy of %0.1f bits requires a length of %d\n",
 			*alphabet,
 			*entropy,
-			int(math.Ceil(math.Log(math.Pow(2, *entropy))/math.Log(float64(*alphabet)))))
+			int(math.Ceil(*entropy/math.Log2(float64(*alphabet)))))
 	} else if *length > 0 && *entropy > 0.0 && *alphabet == 0.0 {
-		fmt.Printf("An entropy of %0.1f bits and a length = %d requires a alphabet size of %d\n",
+		fmt.Printf("An entropy of %0.1f bits and a length = %d requires an alphabet size of %d\n",
 			*entropy,
 			*length,
 			int(math.Ceil(math.Log(math.Pow(2, *entropy))/math.Log(float64(*length)))))
